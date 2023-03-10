@@ -48,4 +48,35 @@ require  ( balance > 0 ,"you dont have any CRYPTO nft");
 
 
 uint256 amount=0;
+
+for (uint256 i = 0; i < balance; i++) {
+    uint256 tokenId = CryptoDevsNFT.tokenOfOwnerByIndex(sender, i);
+              // if the tokenId has not been claimed, increase the amount
+              if (!tokenIdsClaimed[tokenId]) {
+                  amount += 1;
+                  tokenIdsClaimed[tokenId] = true;
+              }
+}
+ require(amount > 0, "You have already claimed all the tokens");
+          // call the internal function from Openzeppelin's ERC20 contract
+          // Mint (amount * 10) tokens for each NFT
+          _mint(msg.sender, amount * tokensPerNFT);
+      }
+      function withdraw()public onlyOwner{
+uint256 amount =address(this).balance;
+  require(amount > 0, "Nothing to withdraw, contract balance empty");
+        
+        address _owner = owner();
+                (bool sent, ) = _owner.call{value: amount}("");
+        require(sent, "Failed to send Ether");
+
+
+      }
+      receive() external payable {}
+
+      // Fallback function is called when msg.data is not empty
+      fallback() external payable {}
+
+
+
       }
