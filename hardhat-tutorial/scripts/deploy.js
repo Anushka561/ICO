@@ -34,5 +34,3 @@ main()
     console.error(error);
     process.exit(1);
   });
-
-  //0x438c96852f7d0c700C87a45d69a22a84bA71b582

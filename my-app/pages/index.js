@@ -45,8 +45,11 @@ try{
     provider
   );
 
-  const signer=await getProviderOrSigner(true)
+  const signer=await getProviderOrSigner(true);
 
-}
-  };
+
+}catch(err){
+    
+  }
+  }
 }
